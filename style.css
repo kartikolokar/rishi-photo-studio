@@ -48,14 +48,14 @@ body {
 }
 
 .header .brand h1 {
-  font-size: 38px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: 1px;
   line-height: 1.1;
 }
 
 .header .brand p {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
   opacity: 0.85;
   margin-top: 6px;
@@ -315,3 +315,46 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
 }
+
+/* Text watermark across the entire page */
+body::before {
+  content: "Rishi Photo Studio";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 10vw;
+  color: rgba(30, 58, 138, 0.07);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 0;
+  font-weight: 900;
+  letter-spacing: 1vw;
+}
+
+/* Make sure main content is above watermark */
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Small developer watermark fixed at bottom-right */
+body::after {
+  content: "Developed by Kartik Olokar";
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  font-size: 12px;
+  color: rgba(30, 58, 138, 0.5); /* semi-transparent blue */
+  font-weight: 600;
+  font-family: "Poppins", Arial, sans-serif;
+  pointer-events: none; /* so it won’t block clicks */
+  user-select: none; /* prevent selecting the text */
+  z-index: 9999; /* on top */
+  background: rgba(255, 255, 255, 0.7); /* optional: subtle white background */
+  padding: 4px 8px;
+  border-radius: 6px;
+  box-shadow: 0 0 6px rgba(30, 58, 138, 0.2);
+}
+
