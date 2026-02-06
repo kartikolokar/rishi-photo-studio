@@ -18,6 +18,8 @@ body {
   max-width: 1080px;
   margin: 0 auto;
   padding: 0 20px 40px;
+  position: relative; /* to stay above watermark */
+  z-index: 1;
 }
 
 /* Header */
@@ -60,6 +62,47 @@ body {
   opacity: 0.85;
   margin-top: 6px;
   font-style: italic;
+}
+
+/* Responsive tweaks for phones */
+@media (max-width: 600px) {
+  .header {
+    /* Keep logo and text in a row on phones */
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 12px 10px;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+    padding: 4px;
+  }
+
+  .header .brand h1 {
+    font-size: 16px;
+  }
+
+  .header .brand p {
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  /* Other responsive styles */
+  .owner-card {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .contact-buttons {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
 }
 
 /* Sections */
@@ -285,37 +328,6 @@ footer {
   user-select: none;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  .header {
-    flex-direction: column;
-    text-align: center;
-    gap: 10px;
-  }
-  
-  .header .brand h1 {
-    font-size: 28px;
-  }
-  
-  .header .brand p {
-    font-size: 16px;
-  }
-  
-  .owner-card {
-    flex-direction: column;
-    gap: 18px;
-  }
-
-  .contact-buttons {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .gallery {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  }
-}
-
 /* Text watermark across the entire page */
 body::before {
   content: "Rishi Photo Studio";
@@ -333,12 +345,6 @@ body::before {
   letter-spacing: 1vw;
 }
 
-/* Make sure main content is above watermark */
-.container {
-  position: relative;
-  z-index: 1;
-}
-
 /* Small developer watermark fixed at bottom-right */
 body::after {
   content: "Developed by Kartik Olokar";
@@ -346,15 +352,27 @@ body::after {
   bottom: 12px;
   right: 12px;
   font-size: 12px;
-  color: rgba(30, 58, 138, 0.5); /* semi-transparent blue */
+  color: rgba(30, 58, 138, 0.5);
   font-weight: 600;
   font-family: "Poppins", Arial, sans-serif;
-  pointer-events: none; /* so it won’t block clicks */
-  user-select: none; /* prevent selecting the text */
-  z-index: 9999; /* on top */
-  background: rgba(255, 255, 255, 0.7); /* optional: subtle white background */
+  pointer-events: none;
+  user-select: none;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.7);
   padding: 4px 8px;
   border-radius: 6px;
   box-shadow: 0 0 6px rgba(30, 58, 138, 0.2);
+  opacity: 1;
+  transition: opacity 1s ease, visibility 1s ease;
 }
+
+body.hide-dev-watermark::after {
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+  visibility: hidden;  /* <-- added missing semicolon */
+}
+
+
+
 
