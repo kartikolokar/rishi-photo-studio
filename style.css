@@ -18,13 +18,13 @@ body {
   max-width: 1080px;
   margin: 0 auto;
   padding: 0 20px 40px;
-  position: relative; /* to stay above watermark */
+  position: relative;
   z-index: 1;
 }
 
 /* Header */
 .header {
-  background-color: #1E3A8A; /* Deep Blue */
+  background-color: #1E3A8A; 
   color: #fff;
   padding: 24px 20px;
   display: flex;
@@ -35,11 +35,11 @@ body {
 }
 
 .logo {
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   border-radius: 12px;
   background: #fff;
-  padding: 6px;
+  padding: 5px;
   object-fit: contain;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
@@ -49,20 +49,37 @@ body {
   transform: scale(1.1);
 }
 
+/* Brand text – Desktop */
 .header .brand h1 {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 700;
-  letter-spacing: 1px;
-  line-height: 1.1;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
 }
 
 .header .brand p {
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 400;
   opacity: 0.85;
-  margin-top: 6px;
+  margin-top: 4px;
   font-style: italic;
 }
+
+/* 📱 Mobile optimization */
+@media (max-width: 600px) {
+  .header .brand h1 {
+    font-size: 16px;       /* smaller & balanced */
+    letter-spacing: 0.3px;
+    line-height: 1.15;
+  }
+
+  .header .brand p {
+    font-size: 12px;       /* clean subtitle */
+    margin-top: 2px;
+    opacity: 0.8;
+  }
+}
+
 
 /* Responsive tweaks for phones */
 @media (max-width: 600px) {
@@ -145,7 +162,7 @@ section p {
 .services li {
   font-size: 16px;
   padding: 14px 0;
-  border-bottom: 1px solid #e2e8f0; /* subtle light blue-gray */
+  border-bottom: 1px solid #e2e8f0; 
   display: flex;
   align-items: center;
   gap: 12px;
@@ -153,6 +170,28 @@ section p {
 }
 
 .services li::before {
+  color: #1E3A8A;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 0;
+}
+
+.services1 {
+  list-style: none;
+  padding-left: 0;
+}
+
+.services1 li {
+  font-size: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e2e8f0; /* subtle light blue-gray */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #444;
+}
+
+.services1 li::before {
   content: "✓";
   color: #1E3A8A;
   font-weight: 700;
@@ -184,46 +223,70 @@ a:hover {
 /* Contact Buttons */
 .contact-buttons {
   display: flex;
-  gap: 18px;
-  margin-top: 24px;
-  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 15px;
+  justify-content: center;
 }
 
 .contact-buttons a {
-  flex: 1 1 300px;
+  text-decoration: none;
+  flex: 1;
+  max-width: 220px;       /* SAME width for both buttons */
 }
 
-button {
+/* Button base */
+.contact-buttons button {
   width: 100%;
-  padding: 16px 0;
-  font-size: 16px;
+  padding: 14px 0;
+  font-size: 14px;
   border: none;
-  border-radius: 16px;
-  font-weight: 700;
+  border-radius: 12px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.15s ease;
-  box-shadow: 0 4px 8px rgba(30, 58, 138, 0.2);
+  transition: transform 0.15s ease, filter 0.3s ease;
+  box-shadow: 0 4px 8px rgba(30, 58, 138, 0.25);
 }
 
+/* WhatsApp button */
 .contact-buttons a:first-child button {
-  background-color: #25d366; /* WhatsApp Green */
+  background-color: #25d366;
   color: #fff;
 }
 
+/* Location button */
 .contact-buttons a:last-child button {
   background-color: #1E3A8A;
   color: #fff;
 }
 
-button:hover {
+/* Hover & active */
+.contact-buttons button:hover {
   filter: brightness(1.1);
   transform: translateY(-2px);
 }
 
-button:active {
+.contact-buttons button:active {
   transform: scale(0.96);
-  filter: brightness(0.9);
 }
+
+/* 📱 Mobile – stack vertically */
+@media (max-width: 600px) {
+  .contact-buttons {
+    flex-direction: column;   /* NOT same row */
+    align-items: center;
+    gap: 8px;
+  }
+
+  .contact-buttons a {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .contact-buttons button {
+    font-size: 15px;
+  }
+}
+
 
 /* Gallery */
 .gallery {
@@ -330,7 +393,7 @@ footer {
 
 /* Text watermark across the entire page */
 body::before {
-  content: "Rishi Photo Studio";
+  content: "Rishi Shingade Photography";
   position: fixed;
   top: 50%;
   left: 50%;
@@ -370,8 +433,65 @@ body.hide-dev-watermark::after {
   opacity: 0;
   pointer-events: none;
   user-select: none;
-  visibility: hidden;  /* <-- added missing semicolon */
+  visibility: hidden; 
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+.nav {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 10px 20px;
+  background: #fff;
+}
+
+.nav {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 10px 20px;
+  background: transparent;
+}
+
+.nav a {
+  text-decoration: none;
+  padding: 8px 16px;
+  background: #023047;   /* lighter blue */
+  color: #ffffff;
+  border-radius: 20px;
+  font-size: 14px;
+  border: 1px solid #0bbcd6;
+  transition: all 0.3s ease;
+}
+
+.nav a:hover {
+  background: #0bbcd6;   /* accent hover */
+  color: #01131a;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 600px) {
+  .owner h2 {
+    text-align: center;
+  }
+}
+
 
 
 
